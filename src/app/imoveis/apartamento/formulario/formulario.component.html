@@ -1,0 +1,56 @@
+<form [formGroup]="formApartamento" (ngSubmit)="onSubmitApt()">
+    <div class="form-group">
+        <label for="qtQuartos">Quantidade de quartos</label>
+        <input type="number" class="form-control" name="quartos" id ="qtQuartos" formControlName="qtQuartos">
+    </div>
+
+    <div class="form-group">
+        <label for="qtSuites">Quantidade de suites</label>
+        <input type="number" class="form-control" name="suites" id ="qtSuites" formControlName="qtSuites">
+    </div>
+
+    <div class="form-group">
+        <label for="qtSala">Quantidade de salas</label>
+        <input type="number" class="form-control" name="salas" id ="qtSala" formControlName="qtSala">
+    </div>
+
+    <div class="form-group">
+        <label for="numVagasGaragem">Número de vagas na garagem</label>
+        <input type="number" class="form-control" name="vagasGaragem" id ="numVagasGaragem" formControlName="numVagasGaragem">
+    </div>
+
+    <div class="form-group">
+        <label for="area">Área</label>
+        <input type="number" class="form-control" name="areaM" id ="area" formControlName="area">
+    </div>
+
+    <div class="form-group">
+        <label for="armarioEmbutido">Armario Embutido</label>
+        <input type="number" class="form-control" name="armario" id ="armarioEmbutido" formControlName="armarioEmbutido">
+    </div>
+
+    <div class="form-group">
+        <label for="descricao">Descrição</label>
+        <input type="text" class="form-control" name="descricaoCasa" id ="descricao" formControlName="descricao">
+    </div>
+
+    <div class="form-group">
+        <label for="andar">Andar</label>
+        <input type="number" class="form-control" name="andar" id ="andar" formControlName="andar">
+    </div>
+
+    <div class="form-group">
+        <label for="valorCondomio">Valor Condominio</label>
+        <input type="number" class="form-control" name="condominio" id ="valorCondomio" formControlName="valorCondomio">
+    </div>
+
+    <div class="form-group">
+        <label for="possuiCondomio24h">Condomínio 24 horas</label><br/>
+        <input type="radio" name="possuiCondomio24h" id ="possuiCondomio24h" checked="yes" value="1" formControlName="possuiCondomio24h"><label>Sim</label>
+        <input type="radio" name="possuiCondomio24h" id ="possuiCondomio24h" value="0"><label>Não</label>
+    </div>
+    
+
+    <input type="submit" class="btn btn-privamy mt-4" value="Salvar">
+    <a href="#" class="btn btn-secondary mt-4 ml-2"> Cancelar</a>
+</form>
