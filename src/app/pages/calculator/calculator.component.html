@@ -1,0 +1,127 @@
+<form class="container" 
+    [formGroup]="form"
+    #formDirective="ngForm">
+    <div class="flex-box">
+        <div>
+            <h2>Preencha os campos abaixo:</h2>
+            <div class="questions-group">
+                <mat-form-field
+                        class="question"
+                        [floatLabel]="'always'"
+                        appearance="outline"
+                        > 
+                    <mat-label>Capacidade de Projeto</mat-label>
+                    <input matInput placeholder="Ex: 0" type="number" value="" formControlName="CapacidadeDeProjeto">
+                    <span class="suffix" matSuffix>t/h&nbsp;</span>
+                </mat-form-field>
+                <mat-form-field
+                        class="question"
+                        [floatLabel]="'always'"
+                        appearance="outline"> 
+                    <mat-label>Velocidade real correia</mat-label>
+                    <input matInput placeholder="Ex: 0" type="number" value="" formControlName="VelocidadeRealCorreia">
+                    <span matSuffix>m/s&nbsp;</span>
+                </mat-form-field>
+            </div>
+            <div class="line"></div>
+            <div class="questions-group">
+                <mat-form-field
+                        class="question"
+                        [floatLabel]="'always'"
+                        appearance="outline"> 
+                    <mat-label>Largura da correia</mat-label>
+                    <input matInput placeholder="Ex: 0" type="number" value=""  formControlName="LarguraDaCorreia">
+                    <span matSuffix>m/m&nbsp;</span>
+                </mat-form-field>
+                <mat-form-field
+                        class="question"
+                        [floatLabel]="'always'"
+                        appearance="outline"> 
+                    <mat-label>Peso específico</mat-label>
+                    <input matInput placeholder="Ex: 0" type="number" value="" formControlName="PesoEspecifico">
+                    <span matSuffix>t/m³&nbsp;</span>
+                </mat-form-field>
+                <mat-form-field
+                        class="question"
+                        [floatLabel]="'always'"
+                        appearance="outline"> 
+                    <mat-label>Ângulo de acomodação B</mat-label>
+                    <input matInput placeholder="Ex: 0" type="number" value="" formControlName="AnguloBeta">
+                    <span matSuffix>º&nbsp;</span>
+                </mat-form-field>
+                <mat-form-field
+                        class="question"
+                        [floatLabel]="'always'"
+                        appearance="outline"> 
+                    <mat-label>Inclinação dos roletes laterais lambda</mat-label>
+                    <input matInput placeholder="Ex: 0" type="number" value="" formControlName="InclinacaoDosRoletesLateraisLambda">
+                    <span matSuffix>º&nbsp;</span>
+                </mat-form-field>
+                <mat-form-field
+                        class="question"
+                        [floatLabel]="'always'"
+                        appearance="outline"> 
+                    <mat-label>Rotação síncrona do motor</mat-label>
+                    <input matInput placeholder="Ex: 0" type="number" value="" formControlName="RotacaoSincronaDoMotor">
+                    <span matSuffix>rpm&nbsp;</span>
+                </mat-form-field>
+                <mat-form-field
+                        class="question"
+                        [floatLabel]="'always'"
+                        appearance="outline"> 
+                    <mat-label>Diametro do tambor acionamento teta</mat-label>
+                    <input matInput placeholder="Ex: 0" type="number" value="" (change)="calculaDiametroEfetivoDoTambor()" formControlName="DiametroTamborAcionamento">
+                    <span matSuffix>mm&nbsp;</span>
+                </mat-form-field>
+                <mat-form-field
+                        class="question"
+                        [floatLabel]="'always'"
+                        appearance="outline"> 
+                    <mat-label>Espessura do revestimento</mat-label>
+                    <input matInput placeholder="Ex: 0" type="number" value="" (change)="calculaDiametroEfetivoDoTambor()" formControlName="EspessuraDoRevestimento">
+                    <span matSuffix>mm&nbsp;</span>
+                </mat-form-field>
+                <mat-form-field
+                        class="question"
+                        [floatLabel]="'always'"
+                        appearance="outline"> 
+                    <mat-label>Escorregamento do acoplamento de alfa</mat-label>
+                    <input matInput placeholder="Ex: 0" type="number" value="" formControlName="EscorregamentoDoAcoplamentoDeAlfa">
+                    <span matSuffix>%&nbsp;</span>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="flex-box2">
+        <div class="flex-box3">
+            <div class="info">
+                <div class="info-card">
+                    <div class="info-text">Comprimento do rolete central:</div>
+                    <div class="info-result">{{comprimentoDoRoleteCentral}}mm</div>
+                </div>
+                <div class="line"></div>
+                <div class="info-card">
+                    <div class="info-text">Diâmetro efeitvo tambor mais revestimento:</div>
+                    <div class="info-result">{{diametroEfetivoDoTambor}}mm</div>
+                </div>
+                <div class="line"></div>
+                <div class="info-card">
+                    <div class="info-text">Rotação do tambor:</div>
+                    <div class="info-result">{{rotacaoDoTambor}}rpm</div>
+                </div>
+            </div>
+            <div class="data">
+                <div class="line"></div>
+                <img
+                    src="assets/tela1.png"
+                    alt="Imagem de exemplo"
+                    width="100%"
+                />
+            </div>
+        </div>
+        <!-- <div class="flex-box4">
+
+        </div> -->
+    </div>
+    <button class="button" mat-raised-button [disabled]="form.invalid" (click)="calcular()">Calcular</button>
+</form>

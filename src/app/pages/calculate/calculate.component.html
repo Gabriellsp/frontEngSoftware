@@ -1,0 +1,54 @@
+<mat-grid-list cols="4" rowHeight="350px">
+    <mat-grid-tile
+        [colspan]="3"
+        [rowspan]="1"
+        >
+        <mat-card class="dashboard-card">
+            <mat-card-header>
+            <mat-card-title>
+                Calculo das raízes de uma função
+            </mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="dashboard-card-content">
+                <form class="example-form"
+                    [formGroup]="calculate">
+                    <mat-form-field class="full-width">
+                        <mat-label>Termo A da equação</mat-label>
+                        <input type="number" matInput  placeholder="Ex. 1" formControlName="valueA">
+                    </mat-form-field>
+                  
+                    <mat-form-field class="full-width">
+                        <mat-label>Termo B da equação</mat-label>
+                        <input type="number" matInput placeholder="Ex. 2" formControlName="valueB">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                        <mat-label>Termo C da equação</mat-label>
+                        <input type="number" matInput placeholder="Ex. 3" formControlName="valueC">
+                    </mat-form-field>
+                  </form>
+            </mat-card-content>
+            <button mat-raised-button style="float: right;" (click)="calculator()" color="primary" type="submit" [disabled]="!calculate.valid">Calcular</button>
+        </mat-card>
+   </mat-grid-tile>
+   <mat-grid-tile
+        [colspan]="1"
+        [rowspan]="1">
+        <mat-card class="dashboard-card">
+            <mat-card-header>
+            <mat-card-title>
+                Resultado
+            </mat-card-title>
+            </mat-card-header>
+            <mat-card-content *ngIf="neverUsed" class="dashboard-card-content">
+                O seu resultado aparecerá aqui
+            </mat-card-content>
+            <mat-card-content *ngIf="loading" class="dashboard-card-content">
+                <mat-spinner style="margin:0 auto;" class="spinner"></mat-spinner>
+            </mat-card-content>
+            <mat-card-content *ngIf="thereIsAnswer" class="dashboard-card-content">
+            {{answer}}
+            </mat-card-content>
+        </mat-card>
+   </mat-grid-tile>
+</mat-grid-list>
