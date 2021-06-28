@@ -1,22 +1,16 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Observable} from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { map, catchError } from 'rxjs/operators';
-import { Observable} from 'rxjs';
-import { CasaService } from '../../services/casa.service';
-import { Casa } from '../../models/casa';
-
-
-@Injectable({
-  providedIn: 'root'
-})
+import { ApartamentoService } from '../../services/apartamento.service';
+import { Apartamento } from '../../models/apartamento';
 
 @Component({
-  selector: 'app-cadastrar-casa',
-  templateUrl: './cadastrar-casa.component.html',
-  styleUrls: ['./cadastrar-casa.component.scss']
+  selector: 'app-cadastrar-apartamento',
+  templateUrl: './cadastrar-apartamento.component.html',
+  styleUrls: ['./cadastrar-apartamento.component.scss']
 })
-export class CadastrarCasaComponent implements OnInit {
+export class CadastrarApartamentoComponent implements OnInit {
 
   message = null; 
   form: FormGroup;
@@ -24,7 +18,7 @@ export class CadastrarCasaComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private readonly http: HttpClient,
-    private casaService: CasaService
+    private apartamentoService: ApartamentoService
     ) {
     
   }
@@ -58,6 +52,15 @@ export class CadastrarCasaComponent implements OnInit {
       idBairro: [null, [
         Validators.required,
       ]],
+      andar: [null, [
+        Validators.required,
+      ]],
+      condominio: [null, [
+        Validators.required,
+      ]],
+      portaria24h: [null, [
+        Validators.required,
+      ]],
     });
   }
 
@@ -66,17 +69,16 @@ export class CadastrarCasaComponent implements OnInit {
     console.log(this.form.value);
     const casa = this.form.value;
 
-    this.cadastrarCasa(casa);
+    this.cadastrarApartamento(casa);
    
   }
 
-  cadastrarCasa(casa: Casa) {
-      this.casaService.saveCasa(casa).subscribe(  
+  cadastrarApartamento(apt: Apartamento) {
+      this.apartamentoService.saveCasa(apt).subscribe(  
         () => {  
           this.message = 'Registro salvo com sucesso';  
         }  
       );  
   
   }
-
 }

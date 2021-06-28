@@ -25,6 +25,16 @@ const routes: Routes = [
         loadChildren: () =>
           import('./pages/cadastrar-casa/cadastrar-casa.module').then((m) => m.CadastrarCasaModule),
       },
+      {
+        path: 'cadastrar-apartamento',
+        loadChildren: () =>
+          import('./pages/cadastrar-apartamento/cadastrar-apartamento.module').then((m) => m.CadastrarApartamentoModule),
+      },
+      {
+        path: 'list-casa',
+        loadChildren: () =>
+          import('./pages/list-casa/list-casa.module').then((m) => m.ListCasaModule),
+      },
     ],
   },
 ];

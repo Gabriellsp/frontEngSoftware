@@ -1,0 +1,71 @@
+<p>cadastrar-apartamento works!</p>
+<mat-grid-list cols="3" rowHeight="900px">
+    <mat-grid-tile
+        [colspan]="3"
+        [rowspan]="1"
+        >
+        <mat-card class="dashboard-card">
+            <mat-card-header>
+            <mat-card-title>
+                Cadastrar Apartamento:
+            </mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="dashboard-card-content">
+                <form class="example-form"
+                    [formGroup]="form">
+                    <mat-form-field class="full-width">
+                        <mat-label>Nome</mat-label>
+                        <input type="text" matInput  placeholder="Nome" formControlName="nome">
+                    </mat-form-field>
+                  
+                    <mat-form-field class="full-width">
+                        <mat-label>Quantidade de Quartos</mat-label>
+                        <input type="number" matInput placeholder="Ex: 1" formControlName="quarto">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width">
+                        <mat-label>Quantidade de Suítes</mat-label>
+                        <input type="number" matInput placeholder="Suíte 14" formControlName="suite">
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <mat-label>Quantidade de Vagas na Garagem</mat-label>
+                        <input type="number" matInput placeholder="5 Vagas" formControlName="garagem">
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <mat-label>Quantidade de Sala</mat-label>
+                        <input type="number" matInput placeholder="2 Salas" formControlName="sala">
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <mat-label>Quantidade de Armarios Embutidos</mat-label>
+                        <input type="number" matInput placeholder="5 armarios" formControlName="armarioEmbutido">
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <mat-label>Endereço</mat-label>
+                        <input type="text" matInput placeholder="Rua das batatas" formControlName="endereco">
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <mat-label>Área do Apartamento</mat-label>
+                        <input type="number" matInput placeholder="250" formControlName="metros">
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <mat-label>Bairro</mat-label>
+                        <input type="text" matInput placeholder="Id Bairro" formControlName="idBairro">
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <mat-label>Andar</mat-label>
+                        <input type="number" matInput placeholder="2" formControlName="andar">
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <mat-label>Valor do condominio</mat-label>
+                        <input type="number" matInput placeholder="2" formControlName="condominio">
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <mat-label>Valor do condominio</mat-label>
+                        <input type="number" matInput placeholder="1" formControlName="portaria24h">
+                    </mat-form-field>
+                  </form>
+            </mat-card-content>
+            <button mat-raised-button style="float: right;" (click)="cadastrar()" color="primary" type="submit" [disabled]="!form.valid">Cadastrar</button>
+        </mat-card>
+   </mat-grid-tile>
+</mat-grid-list>

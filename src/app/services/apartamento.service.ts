@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { Casa } from '../models/casa';
+import { Apartamento } from '../models/apartamento';
+
 @Injectable({
   providedIn: 'root'
 })
+export class ApartamentoService {
 
-
-export class CasaService {
-  url = 'http://localhost:3000/casa';
+  url = 'http://localhost:3000/apartamento/create';
 
   constructor(private httpClient: HttpClient) { }
   
@@ -17,16 +17,12 @@ export class CasaService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
 
-  saveCasa(casa: Casa): Observable<Casa> {
-    return this.httpClient.post<Casa>(`${this.url}/create`, JSON.stringify(casa), this.httpOptions)
+  saveCasa(apartamento: Apartamento): Observable<Apartamento> {
+    return this.httpClient.post<Apartamento>(this.url, JSON.stringify(apartamento), this.httpOptions)
     .pipe(
       retry(2),
       catchError(this.handleError)
     )    
-  }
-
-  getListCasa(): Observable<Casa []> {
-    return this.httpClient.get<Casa[]>(`${this.url}/get`);   
   }
 
   handleError(error: HttpErrorResponse) {

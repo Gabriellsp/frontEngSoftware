@@ -1,4 +1,4 @@
-export interface Casa {
+export interface Apartamento {
     nome: string;
     quarto: number;
     suite:  number;
@@ -9,4 +9,7 @@ export interface Casa {
     endereco: string;
     metros: number;
     idBairro: string;
+    andar: number;
+    condominio: number;
+    portaria24h: boolean;
 }
