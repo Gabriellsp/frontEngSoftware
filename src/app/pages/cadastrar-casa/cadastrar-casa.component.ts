@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { Observable} from 'rxjs';
+import { CasaService } from '../../services/casa.service';
+import { Casa } from '../../models/casa';
 
 
 @Injectable({
@@ -15,68 +17,87 @@ import { Observable} from 'rxjs';
   styleUrls: ['./cadastrar-casa.component.scss']
 })
 export class CadastrarCasaComponent implements OnInit {
-
+  dataSaved = false;  
+  alunoForm: any;  
+  allAlunos: Observable<Casa[]>;  
+  alunoIdUpdate = null;  
+  message = null; 
   form: FormGroup;
 
   constructor(
-    fb: FormBuilder,
-    private readonly http: HttpClient
-    
+    private fb: FormBuilder,
+    private readonly http: HttpClient,
+    private casaService: CasaService
     ) {
-    this.form =  fb.group({
-      nome: [null, [
+    
+  }
+
+  ngOnInit(): void {
+    this.form =  this.fb.group({
+      nome: ['oi', [
         Validators.required,
       ]],
-      quarto: [null, [
+      quarto: [1, [
         Validators.required,
       ]],
-      suite: [null, [
+      suite: [1, [
         Validators.required,
       ]],
-      garagem: [null, [
+      garagem: [1, [
         Validators.required,
       ]],
-      sala: [null, [
+      sala: [1, [
         Validators.required,
       ]],
-      armarioEmbutido: [null, [
+      armarioEmbutido: [1, [
         Validators.required,
       ]],
-      endereco: [null, [
+      endereco: ['1', [
         Validators.required,
       ]],
-      metros: [null, [
+      metros: [1, [
         Validators.required,
       ]],
-      idBairro: [null, [
+      idBairro: [1, [
         Validators.required,
       ]],
     });
   }
 
-  ngOnInit(): void {
-  }
-
   cadastrar(){
 
-   console.log(this.form.value);
-
-   this.post(this.form.value);
+    console.log(this.form.value);
+    const casa = this.form.value;
+    this.casaService.saveCasa(casa).subscribe(() => {
+      
+    });
    
   }
 
-
-   post<T>(data: any): Observable<T> {
-    const httpOptions = {
-      headers: new HttpHeaders("Content-Type: application/json")
-    };
-    const url = 'http://localhost:3000/casa/create/';
-    return this.http.post<T>(url, data, httpOptions)
-      .pipe(map((response: T) => {
-        console.log('dentrooooooooo');
-        return response;
-      }))
-      .pipe();
+  cadastrarCasa(casa: Casa) {
+    if (casa.area == null) {  
+      this.casaService.saveCasa(casa).subscribe(  
+        () => {  
+          this.dataSaved = true;  
+          this.message = 'Registro salvo com sucesso';  
+        }  
+      );  
+    }
   }
+  
+
+
+  //  post<T>(data: any): Observable<T> {
+  //   const httpOptions = {
+  //     headers: new HttpHeaders("Content-Type: application/json")
+  //   };
+  //   const url = 'http://localhost:3000/casa/create/';
+  //   return this.http.post<T>(url, data, httpOptions)
+  //     .pipe(map((response: T) => {
+  //       console.log('dentrooooooooo');
+  //       return response;
+  //     }))
+  //     .pipe();
+  // }
 
 }
