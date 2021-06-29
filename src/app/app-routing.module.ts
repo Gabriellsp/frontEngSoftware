@@ -9,13 +9,6 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-        path: 'dashboard',
-        loadChildren: () =>
-          import('./pages/dashboard/dashboard.module').then(
-            (m) => m.DashboardModule
-          ),
-      },
-      {
         path: 'about',
         loadChildren: () =>
           import('./pages/about/about.module').then((m) => m.AboutModule),
@@ -34,6 +27,11 @@ const routes: Routes = [
         path: 'list-casa',
         loadChildren: () =>
           import('./pages/list-casa/list-casa.module').then((m) => m.ListCasaModule),
+      },
+      {
+        path: 'list-apartamento',
+        loadChildren: () =>
+          import('./pages/list-apartamento/list-apartamento.module').then((m) => m.ListApartamentoModule),
       },
     ],
   },

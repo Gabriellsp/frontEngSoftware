@@ -9,7 +9,7 @@ import { Apartamento } from '../models/apartamento';
 })
 export class ApartamentoService {
 
-  url = 'http://localhost:3000/apartamento/create';
+  url = 'http://localhost:3000/apartamento';
 
   constructor(private httpClient: HttpClient) { }
   
@@ -18,11 +18,15 @@ export class ApartamentoService {
   }
 
   saveCasa(apartamento: Apartamento): Observable<Apartamento> {
-    return this.httpClient.post<Apartamento>(this.url, JSON.stringify(apartamento), this.httpOptions)
+    return this.httpClient.post<Apartamento>(`${this.url}/create`, JSON.stringify(apartamento), this.httpOptions)
     .pipe(
       retry(2),
       catchError(this.handleError)
     )    
+  }
+
+  getListApartamento(): Observable<Apartamento []> {
+    return this.httpClient.get<Apartamento[]>(`${this.url}/get`);   
   }
 
   handleError(error: HttpErrorResponse) {

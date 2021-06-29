@@ -24,6 +24,5 @@ export class ListCasaComponent implements OnInit {
         this.message = 'Lista de casas retornadas com sucesso!';  
       }  
     );  
-
-}
+  }
 }

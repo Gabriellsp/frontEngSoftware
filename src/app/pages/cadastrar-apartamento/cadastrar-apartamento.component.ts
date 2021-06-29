@@ -58,7 +58,7 @@ export class CadastrarApartamentoComponent implements OnInit {
       condominio: [null, [
         Validators.required,
       ]],
-      portaria24h: [null, [
+      portaria24h: [0, [
         Validators.required,
       ]],
     });
