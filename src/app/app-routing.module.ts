@@ -19,6 +19,11 @@ const routes: Routes = [
           import('./pages/cadastrar-casa/cadastrar-casa.module').then((m) => m.CadastrarCasaModule),
       },
       {
+        path: 'cadastrar-bairro',
+        loadChildren: () =>
+          import('./pages/cadastrar-bairro/cadastrar-bairro.module').then((m) => m.CadastrarBairroModule),
+      },
+      {
         path: 'cadastrar-apartamento',
         loadChildren: () =>
           import('./pages/cadastrar-apartamento/cadastrar-apartamento.module').then((m) => m.CadastrarApartamentoModule),
@@ -33,6 +38,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('./pages/list-apartamento/list-apartamento.module').then((m) => m.ListApartamentoModule),
       },
+      
     ],
   },
 ];

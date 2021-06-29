@@ -1,4 +1,4 @@
-<mat-grid-list cols="3" rowHeight="900px">
+<mat-grid-list cols="3" rowHeight="980px">
     <mat-grid-tile
         [colspan]="3"
         [rowspan]="1"
@@ -48,11 +48,17 @@
                     </mat-form-field>
                     <mat-form-field class="full-width">
                         <mat-label>Bairro</mat-label>
-                        <input type="text" matInput placeholder="Id Bairro" formControlName="idBairro">
+                        <select matNativeControl required formControlName="idBairro">
+                            <option *ngFor="let bairro of bairros" [value]="bairro.nome">{{bairro.nome}}</option>
+                        </select>
                     </mat-form-field>
                     <mat-form-field class="full-width">
                         <mat-label>Andar</mat-label>
                         <input type="number" matInput placeholder="2" formControlName="andar">
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <mat-label>Aluguel da casa</mat-label>
+                        <input type="number" matInput placeholder="1100" formControlName="aluguel">
                     </mat-form-field>
                     <mat-form-field class="full-width">
                         <mat-label>Valor do condominio</mat-label>
@@ -60,7 +66,14 @@
                     </mat-form-field>
                     <mat-form-field class="full-width">
                         <mat-label>Possui portaria 24h</mat-label>
-                        <input type="number" matInput placeholder="0" formControlName="portaria24h">
+                        <select matNativeControl required formControlName="portaria24h">
+                            <option value="1">Sim</option>
+                            <option value="0">Não</option>
+                        </select>
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <mat-label>Descrição</mat-label>
+                        <input type="text" matInput placeholder="Descrição" formControlName="descricao">
                     </mat-form-field>
                   </form>
             </mat-card-content>

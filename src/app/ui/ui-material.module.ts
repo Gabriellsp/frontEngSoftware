@@ -10,6 +10,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
+
 const MODULES = [
   LayoutModule,
   MatButtonModule,
@@ -19,7 +20,7 @@ const MODULES = [
   MatListModule,
   MatMenuModule,
   MatSidenavModule,
-  MatToolbarModule,
+  MatToolbarModule
 ];
 
 @NgModule({

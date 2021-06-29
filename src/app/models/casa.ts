@@ -5,8 +5,9 @@ export interface Casa {
     sala: number;
     garagem: number;
     armarioEmbutido: number ;
-    descricao: string ;
     endereco: string;
     metros: number;
     idBairro: string;
+    aluguel: number;
+    descricao: string ;
 }

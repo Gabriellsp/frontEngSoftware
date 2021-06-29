@@ -5,10 +5,11 @@ export interface Apartamento {
     sala: number;
     garagem: number;
     armarioEmbutido: number ;
-    descricao: string ;
     endereco: string;
     metros: number;
     idBairro: string;
+    aluguel: number;
+    descricao: string ;
     andar: number;
     condominio: number;
     portaria24h: boolean;

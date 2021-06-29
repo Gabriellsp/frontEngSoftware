@@ -5,6 +5,7 @@ import { map, catchError } from 'rxjs/operators';
 import { Observable} from 'rxjs';
 import { CasaService } from '../../services/casa.service';
 import { Casa } from '../../models/casa';
+import { BairroService } from '../../services/bairro.service';
 
 
 @Injectable({
@@ -20,16 +21,19 @@ export class CadastrarCasaComponent implements OnInit {
 
   message = null; 
   form: FormGroup;
-
+  bairros;
+  
   constructor(
     private fb: FormBuilder,
     private readonly http: HttpClient,
-    private casaService: CasaService
+    private casaService: CasaService,
+    private bairroService: BairroService
     ) {
     
   }
 
   ngOnInit(): void {
+    this.listBairros();
     this.form =  this.fb.group({
       nome: [null, [
         Validators.required,
@@ -58,6 +62,12 @@ export class CadastrarCasaComponent implements OnInit {
       idBairro: [null, [
         Validators.required,
       ]],
+      aluguel: [null, [
+        Validators.required,
+      ]],
+      descricao: [null, [
+        Validators.required,
+      ]],
     });
   }
 
@@ -73,10 +83,20 @@ export class CadastrarCasaComponent implements OnInit {
   cadastrarCasa(casa: Casa) {
       this.casaService.saveCasa(casa).subscribe(  
         () => {  
-          this.message = 'Registro salvo com sucesso';  
+          this.message = 'Registro salvo com sucesso';
+          alert("Cadastrado com sucesso!");  
         }  
       );  
   
+  }
+
+  listBairros() {
+    this.bairroService.getListBairro().subscribe(  
+      (data) => {  
+        this.bairros = data;
+        this.message = 'Lista de casas retornadas com sucesso!';  
+      }  
+    );  
   }
 
 }

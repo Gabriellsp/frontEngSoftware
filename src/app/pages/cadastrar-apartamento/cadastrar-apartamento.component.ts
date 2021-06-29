@@ -3,6 +3,7 @@ import { Observable} from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { ApartamentoService } from '../../services/apartamento.service';
+import { BairroService } from '../../services/bairro.service';
 import { Apartamento } from '../../models/apartamento';
 
 @Component({
@@ -14,16 +15,19 @@ export class CadastrarApartamentoComponent implements OnInit {
 
   message = null; 
   form: FormGroup;
-
+  bairros;
+  
   constructor(
     private fb: FormBuilder,
     private readonly http: HttpClient,
-    private apartamentoService: ApartamentoService
+    private apartamentoService: ApartamentoService,
+    private bairroService: BairroService
     ) {
     
   }
 
   ngOnInit(): void {
+    this.listBairros();
     this.form =  this.fb.group({
       nome: [null, [
         Validators.required,
@@ -58,18 +62,33 @@ export class CadastrarApartamentoComponent implements OnInit {
       condominio: [null, [
         Validators.required,
       ]],
+      aluguel: [null, [
+        Validators.required,
+      ]],
       portaria24h: [0, [
+        Validators.required,
+      ]],
+      descricao: [null, [
         Validators.required,
       ]],
     });
   }
 
+  listBairros() {
+    this.bairroService.getListBairro().subscribe(  
+      (data) => {  
+        this.bairros = data;
+        this.message = 'Lista de casas retornadas com sucesso!';  
+      }  
+    );  
+  }
+
   cadastrar(){
 
     console.log(this.form.value);
-    const casa = this.form.value;
+    const apt = this.form.value;
 
-    this.cadastrarApartamento(casa);
+    this.cadastrarApartamento(apt);
    
   }
 
@@ -77,6 +96,7 @@ export class CadastrarApartamentoComponent implements OnInit {
       this.apartamentoService.saveCasa(apt).subscribe(  
         () => {  
           this.message = 'Registro salvo com sucesso';  
+          alert("Cadastrado com sucesso!");
         }  
       );  
   
